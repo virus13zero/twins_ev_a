@@ -39,18 +39,28 @@ cd twins_ev_a
 # Install dependencies and grant permissions
 chmod +x setup.sh && sudo ./setup.sh
 
-#use tool 
+#RUN  tool 
 sudo ./Twins_Evil_AT.sh
 
 
-##📂 Project Structure | هيكل المشروع
-Twins_Evil_AT.sh: The core engine of the framework.
 
-setup.sh: Automated dependency handler.
+---
 
-requirements.txt: List of necessary Linux packages.
+## 📂 Project Structure | هيكل المشروع
 
-README.md: Multilingual documentation (English/Arabic).
+| File | Description | الوصف |
+| :--- | :--- | :--- |
+| **`Twins_Evil_AT.sh`** | Core Engine | السكربت الأساسي للأداة |
+| **`setup.sh`** | Dependency Installer | سكربت تثبيت المتطلبات |
+| **`requirements.txt`** | Package List | قائمة الأدوات اللازمة |
+| **`README.md`** | Documentation | ملف الشرح والتعليمات |
 
-##⚠️ Legal Disclaimer | إخلاء مسؤولية
-Usage of twins_ev_a for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, and federal laws. Developer: Viruszero.
+---
+
+## ⚠️ Legal Disclaimer | إخلاء مسؤولية
+
+> **English:** Usage of `twins_ev_a` for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, and federal laws. **Developer: Viruszero.**
+
+> **العربية:** استخدام أداة `twins_ev_a` لمهاجمة أهداف بدون موافقة مسبقة هو أمر غير قانوني. تقع المسؤولية الكاملة على المستخدم النهائي في الامتثال لجميع القوانين المعمول بها. **المطور: Viruszero.**
+
+---
