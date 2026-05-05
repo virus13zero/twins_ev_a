@@ -2,10 +2,10 @@
 **Advanced Wireless Security Auditing Framework**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Platform-Kali%20Linux-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Operator-Dynamic-orange?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Owner-Viruszero-red?style=for-the-badge">
+  <img src="[https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)">
+  <img src="[https://img.shields.io/badge/Platform-Kali%20Linux-blue?style=for-the-badge](https://img.shields.io/badge/Platform-Kali%20Linux-blue?style=for-the-badge)">
+  <img src="[https://img.shields.io/badge/Operator-Dynamic-orange?style=for-the-badge](https://img.shields.io/badge/Operator-Dynamic-orange?style=for-the-badge)">
+  <img src="[https://img.shields.io/badge/Owner-Viruszero-red?style=for-the-badge](https://img.shields.io/badge/Owner-Viruszero-red?style=for-the-badge)">
 </p>
 
 ---
@@ -20,47 +20,23 @@
 ---
 
 ## 🚀 Key Features | المميزات الإضافية
-*   **👤 Identity Protection:** Displays the current system operator while locking the "Owner" tag to **Viruszero**.
-*   **📡 Intelligence Scanning:** Auto-detects network interfaces and manages monitor mode.
-*   **🛠️ Automated Setup:** Zero-configuration dependency installer included.
-*   **🧹 Deep Clean:** Complete system restoration to prevent network conflicts after testing.
-*   **📊 Traffic Analysis:** Real-time `.pcap` logging for forensics and analysis.
+* **👤 Identity Protection:** Displays the current system operator while locking the "Owner" tag to **Viruszero**.
+* **📡 Intelligence Scanning:** Auto-detects network interfaces and manages monitor mode.
+* **🛠️ Automated Setup:** Zero-configuration dependency installer included.
+* **🧹 Deep Clean:** Complete system restoration to prevent network conflicts after testing.
+* **📊 Traffic Analysis:** Real-time `.pcap` logging for forensics and analysis.
 
 ---
 
 ## 🛠️ Installation | التثبيت
 ```bash
-# Clone the repository from virus13zero
-git clone [https://github.com/virus13zero/twins_ev_a.git](https://github.com/virus13zero/twins_ev_a.git)
+# Clone the repository
+git clone https://github.com/virus13zero/twins_ev_a.git
 
 # Navigate to the folder
 cd twins_ev_a
 
-# Install dependencies and grant permissions
+# Install dependencies
 chmod +x setup.sh && sudo ./setup.sh
-
-#RUN  tool 
+# Run the tool
 sudo ./Twins_Evil_AT.sh
-
-
-
----
-
-## 📂 Project Structure | هيكل المشروع
-
-| File | Description | الوصف |
-| :--- | :--- | :--- |
-| **`Twins_Evil_AT.sh`** | Core Engine | السكربت الأساسي للأداة |
-| **`setup.sh`** | Dependency Installer | سكربت تثبيت المتطلبات |
-| **`requirements.txt`** | Package List | قائمة الأدوات اللازمة |
-| **`README.md`** | Documentation | ملف الشرح والتعليمات |
-
----
-
-## ⚠️ Legal Disclaimer | إخلاء مسؤولية
-
-> **English:** Usage of `twins_ev_a` for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, and federal laws. **Developer: Viruszero.**
-
-> **العربية:** استخدام أداة `twins_ev_a` لمهاجمة أهداف بدون موافقة مسبقة هو أمر غير قانوني. تقع المسؤولية الكاملة على المستخدم النهائي في الامتثال لجميع القوانين المعمول بها. **المطور: Viruszero.**
-
----
