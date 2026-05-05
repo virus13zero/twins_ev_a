@@ -1,7 +1,15 @@
-# Viruszero Framework System Requirements
+# Viruszero Framework System Requirements (v14.2.0)
+# Network Stack
 aircrack-ng
 dnsmasq
 tshark
 iptables
-xterm
 wireless-tools
+
+# Terminal & UI
+xterm
+iproute2      # ضروري لأوامر ss و ip الجديدة
+util-linux    # عشان أوامر stat و logger
+
+# System Monitoring
+procps        # عشان أمر top و ps اللي بنراقب بيهم الـ CPU والـ PIDs
