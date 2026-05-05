@@ -1,42 +1,29 @@
-# 🛡️ Twins_Evil_AT (twins_ev_a)
-**Advanced Wireless Security Auditing Framework**
+# 🛡️ Twins_EV_A: The Core Engine
+> **Next-Generation Bash Micro-Kernel Architecture for Security Orchestration**
 
-<p align="center">
-  <img src="[https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)">
-  <img src="[https://img.shields.io/badge/Platform-Kali%20Linux-blue?style=for-the-badge](https://img.shields.io/badge/Platform-Kali%20Linux-blue?style=for-the-badge)">
-  <img src="[https://img.shields.io/badge/Operator-Dynamic-orange?style=for-the-badge](https://img.shields.io/badge/Operator-Dynamic-orange?style=for-the-badge)">
-  <img src="[https://img.shields.io/badge/Owner-Viruszero-red?style=for-the-badge](https://img.shields.io/badge/Owner-Viruszero-red?style=for-the-badge)">
-</p>
+![Version](https://img.shields.io/badge/Version-14.2.0--STABLE-magenta)
+![Platform](https://img.shields.io/badge/Platform-Kali--Linux-blue)
+![Architecture](https://img.shields.io/badge/Architecture-Micro--Kernel-green)
 
----
+## 🧠 System Concept
+**Twins_EV_A** is a specialized runtime orchestrator designed by **viruszero**. Unlike standard scripts, it implements a **Finite State Machine (FSM)** and an **Internal Event Bus** to manage security modules with high precision and safety.
 
-## 📖 Overview | نظرة عامة
-**English:**  
-`twins_ev_a` is a professional bash-based framework designed for automated **Evil Twin** attacks. Developed by **Viruszero**, it simplifies the process of network auditing by automating deauthentication, DNS spoofing, and live traffic sniffing.
+## 🚀 Architectural Pillars
+*   **Micro-Kernel Design:** Centralized control with isolated module execution.
+*   **Pub/Sub Event Bus:** Real-time internal communication for system hooks and logging.
+*   **State Guarding:** Prevents illegal system transitions (READY -> EXECUTION -> MONITORING).
+*   **Process Registry:** Internal PID tracking for graceful resource management (No temporary files).
 
-**العربية:**  
-أداة `twins_ev_a` هي إطار عمل متقدم مبني لبيئة **Kali Linux** لأتمتة هجمات **Evil Twin**. قام بتطويرها **Viruszero** لتسهيل عمليات فحص الشبكات عبر أتمتة عمليات طرد الأجهزة، تزوير الـ DNS، والتنصت اللحظي على البيانات.
-
----
-
-## 🚀 Key Features | المميزات الإضافية
-* **👤 Identity Protection:** Displays the current system operator while locking the "Owner" tag to **Viruszero**.
-* **📡 Intelligence Scanning:** Auto-detects network interfaces and manages monitor mode.
-* **🛠️ Automated Setup:** Zero-configuration dependency installer included.
-* **🧹 Deep Clean:** Complete system restoration to prevent network conflicts after testing.
-* **📊 Traffic Analysis:** Real-time `.pcap` logging for forensics and analysis.
-
----
-
-## 🛠️ Installation | التثبيت
+## 📥 Deployment
 ```bash
 # Clone the repository
 git clone https://github.com/virus13zero/twins_ev_a.git
 
-# Navigate to the folder
+# Navigate to directory
 cd twins_ev_a
 
-# Install dependencies
-chmod +x setup.sh && sudo ./setup.sh
-# Run the tool
-sudo ./Twins_Evil_AT.sh
+# Make the engine executable
+chmod +x twins_ev_a.sh
+
+# Run with Root Privileges
+sudo ./twins_ev_a.sh
