@@ -39,10 +39,11 @@ cd twins_ev_a
 # Install dependencies and grant permissions
 chmod +x setup.sh && sudo ./setup.sh
 
+#use tool 
+sudo ./Twins_Evil_AT.sh
 
 
-
-📂 Project Structure | هيكل المشروع
+##📂 Project Structure | هيكل المشروع
 Twins_Evil_AT.sh: The core engine of the framework.
 
 setup.sh: Automated dependency handler.
@@ -51,5 +52,5 @@ requirements.txt: List of necessary Linux packages.
 
 README.md: Multilingual documentation (English/Arabic).
 
-⚠️ Legal Disclaimer | إخلاء مسؤولية
+##⚠️ Legal Disclaimer | إخلاء مسؤولية
 Usage of twins_ev_a for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, and federal laws. Developer: Viruszero.
