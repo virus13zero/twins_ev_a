@@ -1,20 +1,20 @@
 #!/bin/bash
 # ==============================================================================
 # SYSTEM: Twins_EV_A (MICRO-KERNEL ARCHITECTURE)
-# VERSION: 14.3.0-RESILIENT | AUTHOR: viruszero
-# FIX: Handle "No space left on device" & Write Errors
+# VERSION: 14.4.0-DASHBOARD | AUTHOR: viruszero
+# FEATURE: Real-time Process Radar & Health Monitor
 # ==============================================================================
 
-set -Euo pipefail # شيلنا الـ -e عشان السكربت ميفصلش لو أمر فشل بسبب المساحة
+set -Euo pipefail 
 
 # [1] KERNEL REGISTRY
-readonly VZ_VERSION="14.3.0"
+readonly VZ_VERSION="14.4.0"
 declare -A PID_TABLE
 declare -A EVENT_REGISTRY
 declare -A STATE_RULES
 CURRENT_STATE="BOOT"
 
-# الألوان
+# الألوان الاحترافية
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[0;33m'; 
 BLUE='\033[0;34m'; MAGENTA='\033[0;35m'; CYAN='\033[0;36m'; NC='\033[0m'
 
@@ -25,19 +25,14 @@ STATE_RULES["EXECUTION"]="MONITORING"
 STATE_RULES["MONITORING"]="CLEANUP"
 STATE_RULES["CLEANUP"]="READY"
 
-# [3] RESILIENT LOGGING (معدل لمنع الانهيار)
+# [3] RESILIENT LOGGING
 on_state_log() { 
     local log_file="./logs/system.log"
-    # التأكد من وجود المجلد أولاً
     [[ ! -d "./logs" ]] && mkdir -p ./logs 2>/dev/null || true
-    
-    # محاولة الكتابة مع تجاهل الخطأ لو الهارد مليان
-    {
-        echo -e "[$(date +%T)] STATE: $1" >> "$log_file"
-    } 2>/dev/null || echo -e "${RED}[!] Storage Alert: System Log full/unwritable${NC}"
+    { echo -e "[$(date +%T)] STATE: $1" >> "$log_file"; } 2>/dev/null || true
 }
 
-# [4] KERNEL UI: THE BANNER
+# [4] KERNEL UI: THE LIVE DASHBOARD (التعديل الجوهري هنا)
 show_banner() {
     clear
     echo -e "${CYAN}"
@@ -50,20 +45,31 @@ show_banner() {
     echo -e "                                         ${MAGENTA}CORE ARCHITECTURE v$VZ_VERSION${NC}"
     echo -e "${BLUE}  ============================================================${NC}"
     echo -e "  [+] Kernel: ${GREEN}ONLINE${NC} | State: ${YELLOW}$CURRENT_STATE${NC} | User: ${RED}viruszero${NC}"
+    
+    # --- Process Radar (الرادار الحي) ---
+    echo -e "${BLUE}  ==================== ACTIVE PROCESSES ======================${NC}"
+    if [ ${#PID_TABLE[@]} -eq 0 ]; then
+        echo -e "  [!] No active tasks in background."
+    else
+        for task in "${!PID_TABLE[@]}"; do
+            local pid=${PID_TABLE[$task]}
+            if ps -p $pid > /dev/null 2>&1; then
+                echo -e "  [${GREEN}✔${NC}] ${CYAN}$task${NC} (PID: $pid) -> ${GREEN}RUNNING${NC}"
+            else
+                echo -e "  [${RED}✘${NC}] ${CYAN}$task${NC} (PID: $pid) -> ${RED}TERMINATED${NC}"
+                unset PID_TABLE["$task"] # تنظيف الجدول من العمليات الميتة
+            fi
+        done
+    fi
     echo -e "${BLUE}  ============================================================${NC}"
 }
 
-# [5] EVENT BUS & PROCESS ORCHESTRATOR
-subscribe() { EVENT_REGISTRY["$1"]+="$2 "; }
-emit() { for h in ${EVENT_REGISTRY["$1"]:-}; do $h "$2"; done; }
-
+# [5] CORE ENGINE LOGIC
 change_state() {
     local target=$1
     if [[ "${STATE_RULES[$CURRENT_STATE]:-}" == "$target" ]] || [[ "$target" == "CLEANUP" ]]; then
         on_state_log "$CURRENT_STATE -> $target"
         CURRENT_STATE=$target
-    else
-        echo -e "${RED}[!] Illegal Transition Attempted${NC}"
     fi
 }
 
@@ -77,38 +83,34 @@ spawn_task() {
 
 # [6] SAFETY & CLEANUP
 cleanup() {
-    echo -e "\n${YELLOW}[*] System Cleanup in progress...${NC}"
     for p in "${!PID_TABLE[@]}"; do kill "${PID_TABLE[$p]}" 2>/dev/null || true; done
-    # مسح الملفات المؤقتة لو وجدت لتقليل الزحام
-    sudo rm -f /tmp/twins_ev_*.tmp 2>/dev/null || true
+    PID_TABLE=()
+    on_state_log "SYSTEM_RESET"
 }
 trap cleanup SIGINT SIGTERM EXIT
 
 # [7] THE MAIN LOOP
 main() {
-    # فحص المساحة قبل البدء (تنبيه فقط)
-    local space=$(df / --output=pcent | tail -1 | tr -dc '0-9')
-    [[ "$space" -gt 95 ]] && echo -e "${RED}[WARNING] Disk space is critically low ($space%)${NC}"
-
     [[ $EUID -ne 0 ]] && { echo "ROOT REQUIRED"; exit 1; }
     mkdir -p logs modules 2>/dev/null || true
     change_state "READY"
     
     while true; do
         show_banner
-        echo -e "${GREEN}1)${NC} Execute Module (Safe Mode)"
-        echo -e "${GREEN}2)${NC} Emergency Reset"
+        echo -e "${GREEN}1)${NC} Execute Module (Safe Engine)"
+        echo -e "${GREEN}2)${NC} Emergency Reset (Cleanup)"
         echo -e "${GREEN}3)${NC} Terminate Kernel"
         echo -ne "\n${MAGENTA}vz-core@kali:~$ ${NC}"
         read -r choice || choice=""
         
         case $choice in
             1) change_state "EXECUTION"
-               spawn_task "Engine_Core" "sleep 100"
+               # بنشغل عملية وهمية للتجربة لمدة 60 ثانية
+               spawn_task "Engine_Core" "sleep 60"
                change_state "MONITORING" ;;
-            2) cleanup; PID_TABLE=(); change_state "READY" ;;
+            2) cleanup; change_state "READY" ;;
             3) exit 0 ;;
-            *) sleep 0.5 ;;
+            *) sleep 0.2 ;;
         esac
     done
 }
