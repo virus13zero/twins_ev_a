@@ -1,0 +1,7 @@
+# Viruszero Framework System Requirements
+aircrack-ng
+dnsmasq
+tshark
+iptables
+xterm
+wireless-tools
